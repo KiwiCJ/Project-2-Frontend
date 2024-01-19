@@ -40,8 +40,8 @@ onMounted(loadCourseData)
   <section class="container">
     <div class="card p-4">
       <h1 class="title"><strong>{{ course.courseName }}</strong></h1> <br>
-      <p>Location: <br> <strong></strong>{{ course.location }}</p>
-      <p>Comment:  <br> <strong></strong>{{ course.comment }}</p>
+      <p>Location: <br> <strong>{{ course.location }} </strong></p>
+      <p>Comment:  <br> <strong>{{ course.comment }} </strong></p>
       <br>
       <router-link :to="{ name: 'editcourse', params: { id: course._id }}" class="btn btn-primary">Edit Course</router-link>
       <br>

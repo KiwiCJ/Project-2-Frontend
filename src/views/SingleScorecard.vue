@@ -123,9 +123,9 @@ const handleDelete = async () => {
   <section>
     <h1>Scorecard Details</h1>
     <div class="scorecard-info">
-      <strong>Player Name:</strong> {{ scorecard.playerName }}<br>
-      <strong>Date:</strong> {{ scorecard.date }}<br>
-      <strong>Weather:</strong> {{ scorecard.weather }}<br>
+      <strong>{{ scorecard.playerName }} </strong><br>
+      Date:  <strong>{{ scorecard.date }} </strong><br>
+      Weather:<strong>{{ scorecard.weather }} </strong><br>
     </div> <br>
     <div class="course-info">
       <strong>{{ scorecard.courseName }}</strong>
