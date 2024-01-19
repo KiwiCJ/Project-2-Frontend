@@ -60,10 +60,10 @@ onMounted(() => {
 <template>
 
 <div class="welcome">
-    <h1 v-if="isLoggedIn">Three Putt Club <br> Welcome {{ userName }}</h1> 
+    <h1 v-if="isLoggedIn">Welcome to the Three Putt Club <br>  {{ userName }}</h1> 
     
     <div v-else>
-      <h1>Login</h1>
+      <h1> Welcome to the Three Putt Club <br> Login </h1>
       <googleLogin :callback="callback" /> 
     </div> <br>
     <br>

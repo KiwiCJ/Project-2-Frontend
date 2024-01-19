@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute()
@@ -117,6 +117,13 @@ const handleDelete = async () => {
     console.log(err.message)
   }
 }
+
+// const totalPlayerScore = computed(() => {
+//   return Object.keys(scorecard.value)
+//   .filter(key => key.startsWith('Hole'))
+//   .reduce((total, key) => total + scorecard.value[key])
+// })
+
 </script>
 
 <template>
@@ -126,10 +133,10 @@ const handleDelete = async () => {
       <strong>{{ scorecard.playerName }} </strong><br>
       Date:  <strong>{{ scorecard.date }} </strong><br>
       Weather:<strong>{{ scorecard.weather }} </strong><br>
+      <!-- Score: <strong>{{ totalPlayerScore }}</strong> -->
     </div> <br>
     <div class="course-info">
       <strong>{{ scorecard.courseName }}</strong>
-      
 
       <div v-for="holeNumber in 18" :key="holeNumber" class="hole-info"> <hr>
         <strong>Hole {{ holeNumber }} </strong> <br> 
