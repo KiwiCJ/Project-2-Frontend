@@ -28,16 +28,17 @@ body {
 }
 
 .navbar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   background-color: rgb(193, 225, 193);
-  color: white;
+  color: black;
   padding: 10px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+
 }
 .nav-link {
   color: black;

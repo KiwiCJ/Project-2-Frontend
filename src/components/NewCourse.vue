@@ -13,7 +13,7 @@ const router = useRouter()
 
 function addCourse() {
     if (course.value.courseName === '' || course.value.location === '') {
-        errorMessage.value = 'Course Name and Location are required';
+        errorMessage.value = 'Course Name and Location are required'
     } else {
         fetch(`${import.meta.env.VITE_API_URL}/course/new`, {
             method: 'POST',
@@ -33,11 +33,11 @@ function addCourse() {
                 comment: ''
             };
             errorMessage.value = ''
-            router.push({ name: 'course' });
+            router.push({ name: 'course' })
         })
         .catch(error => {
             console.error(error);
-        });
+        })
     }
 }
 

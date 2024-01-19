@@ -1,6 +1,6 @@
 <script setup>
-import {decodeCredential, googleLogout} from 'vue3-google-login'
-import {useCookies} from 'vue3-cookies'
+import { decodeCredential, googleLogout } from 'vue3-google-login'
+import { useCookies } from 'vue3-cookies'
 import { onMounted, ref } from 'vue';
 
 const { cookies } = useCookies()
@@ -49,7 +49,7 @@ const handleLogout = () => {
 }
 
 onMounted(() => {
-    console.log('Component is mounted. Checking session...')
+  
     checkSession()
 })
 
@@ -60,14 +60,19 @@ onMounted(() => {
 <template>
 
 <div class="welcome">
-    <h1>Login</h1>
-    <div v-if="isLoggedIn">
-        <h2>Welcome {{ userName }}</h2>
-        <button @click="handleLogout" class="btn btn-primary">Log Out</button>
-    </div>
+    <h1 v-if="isLoggedIn">Three Putt Club <br> Welcome {{ userName }}</h1> 
+    
     <div v-else>
-        <googleLogin :callback="callback" />
-    </div>
+      <h1>Login</h1>
+      <googleLogin :callback="callback" /> 
+    </div> <br>
+    <br>
+    <RouterLink  :to="'/scorecard/new'">
+      <button v-if="isLoggedIn" class="btn btn-new">New Scorecard</button> <br>
+    </RouterLink>
+    <br>
+    <br>
+    <button v-if="isLoggedIn" @click="handleLogout" class="btn btn-secondary">Log Out</button>
 </div>
 
 </template>
@@ -81,13 +86,28 @@ onMounted(() => {
     justify-content: center;
     height: 100vh;
     text-align: center;
-    color: black;
-    max-width: 400px;
+    color: white;
     width: 100%;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgb(193, 225, 193);
-} 
+    background-image: url('https://photo-assets.masters.com/images/pics/large/h_amencormer_easter_12ANGC09RBa1984Hc.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+}
+
+
+.btn-new {
+  background-color: rgb(193, 225, 193);
+  color: black;
+  transition: background-color 0.3s;
+}
+
+.btn-new:hover {
+  background-color: black;
+  color: white;
+}
 
 
 </style>

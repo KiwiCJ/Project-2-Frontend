@@ -1,6 +1,13 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 // import { useRouter } from 'vue-router'
+import { decodeCredential } from 'vue3-google-login'
+import { useCookies } from 'vue3-cookies'
+
+const { cookies } = useCookies()
+
+let isLoggedIn = ref(false)
+let userName = ''
 
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -16,13 +23,24 @@ const fetchData = async () => {
   }
 }
 
-onMounted(fetchData)
+onMounted(() => {
+  fetchData()
+  checkSession()
+})
+
+const checkSession = () => {
+    if(cookies.isKey('user_session')) {
+        isLoggedIn.value = true
+        const userData = decodeCredential(cookies.get('user_session'))
+        userName = userData.given_name
+    } 
+}
 
 
 </script>
 
 <template>
-
+<div v-if="isLoggedIn">
   <main class="container">
     <h1>All Scorecards</h1>
     <br>
@@ -38,14 +56,14 @@ onMounted(fetchData)
 
           <h2><strong>{{ scorecard.playerName }}</strong></h2>
           <h4><strong>{{ scorecard.courseName }}</strong></h4>
-          <strong>Date:</strong> {{ scorecard.date }} 
-          <strong>Weather:</strong> {{ scorecard.weather }}
+          Date: <strong>{{ scorecard.date }} </strong>
+          Weather: <strong>{{ scorecard.weather }} </strong>
 
         </router-link>
       </div>
     </div>
   </main>
-
+</div>
 </template>
 
 <style scoped>
@@ -72,8 +90,9 @@ main {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url('https://media.california.com/media/_versions/articles/scenic_golf_courses__4901x3089___v1222x580.jpg');
+  background-image: url('https://photo-assets.masters.com/images/pics/large/h_amencormer_easter_12ANGC09RBa1984Hc.jpg');
   text-decoration: none;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
 }
 
 .card:hover {
